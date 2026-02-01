@@ -1,0 +1,23 @@
+html{
+    box-sizing: border-box;
+}
+
+.main-title img{
+    height: 300px;
+    width: 100%;
+}
+
+.main-title{
+    /*border: 10px solid red;*/
+    margin-top: 86px;
+    position: relative;
+
+}
+.presentation{
+    text-align: justify;
+}
+/*.main-title h1{
+    position: absolute;
+    top: 40%;
+    left: 40%;
+}*/

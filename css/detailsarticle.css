@@ -1,0 +1,128 @@
+.slide{
+    margin-top: 86px;
+    /*background-color: blue;*/
+}
+
+.main-slide {
+    height: 450px;
+    /*width: 100%;*/
+    overflow: hidden;
+    position: relative;
+}
+
+.main-slide img{
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s;
+    /*object-fit: cover;*/
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*border: none;*/
+}
+
+.main-slide img.active{
+    opacity: 1;
+    /*z-index: 50;*/
+}
+
+.second-slide{
+    /*display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+    background-color: red;
+    overflow: hidden;*/
+    max-height: 450px;
+}
+
+@media only screen and (max-width: 992px) {
+    .second-slide{
+        height: 150px;
+        display: flex;
+        /*flex-wrap: nowrap;*/
+        align-items: center;
+    }
+
+    .second-slide img{
+    height: 80px;
+    width: 80px;
+    object-fit: cover;
+}
+
+}
+
+.second-slide img{
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+}
+/*
+.active{
+    opacity: 1;
+    z-index: 50;
+}
+    */
+
+
+.bouton-next-prev{
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    /*border: 2px solid yellow;*/
+    z-index: 14;
+}
+
+.bouton-next-prev button{
+   width: 40px;
+   width: 40px;
+   margin: 0px 4px 0px 4px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   /*border: 10px solid yellow;*/
+   border: none;
+   cursor: pointer;
+   background-color: transparent;
+
+
+}
+
+.bouton-next-prev i{
+    font-size: 30px;
+    color: var(--whiteColor);
+    opacity: 0.8;
+}
+
+
+
+.buy a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50px;
+    /*display: inline-block;*/
+    /*border: 2px solid blueviolet;*/
+}
+
+span i{
+    font-size: 2rem;
+}
+
+.buy p{
+    width: 100px;
+}
+
+.info-article{
+    text-align: justify;
+}

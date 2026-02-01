@@ -1,0 +1,22 @@
+html{
+    box-sizing: border-box;
+}
+
+.slide-presentation{
+    margin-top: 86px;
+    border: 10px solid yellow;
+    width: 100%;
+}
+
+.slide-presentation img{
+    height: 500px;
+}
+
+.categorie a{
+    display: inline-block;
+    /*border: 1px solid black;*/
+    text-decoration: none;
+}
+.categorie{
+    flex-wrap: wrap;
+}
