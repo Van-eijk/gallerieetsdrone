@@ -1,0 +1,35 @@
+.menu{
+    margin-top: 86px                                ;
+}
+
+.menu a{
+   display: flex; 
+   width: 110px;
+   height: 110px;
+   flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+    margin: 20px;
+    /*border: 2px solid black;*/
+    padding: 10px;
+    border-radius: 10px;
+
+}
+
+.icon i{
+    font-size: 50px;
+    color: white;
+}
+.icon svg{
+    color: white;
+    width: 50px ;
+    height: 50px;
+    margin-bottom: 18px;
+}
+.menu p{
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}

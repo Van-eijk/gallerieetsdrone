@@ -1,0 +1,27 @@
+
+html{
+    height: 100%;
+}
+body{
+    height: 100%;
+}
+.container{
+    border: 10px solid blue;
+    height: 100%;
+    
+}
+
+h1, h2{
+    text-align: center;
+}
+
+.formulaire{
+    border: 2px solid black;
+    width: 400px;
+    height: 50%;
+
+}
+
+form input{
+    width: 100%;
+}

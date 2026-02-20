@@ -16,10 +16,10 @@
     <link rel="stylesheet" href="css/detailsarticle.css">
 </head>
 <body>
-    <div class="container-fluid bg-light">
+    <div class="container-fluid bg-light h-100 w-100 p-3">
         <?php include 'header.php'; ?>
         <div class="slide row">
-            <div class="main-slide border col-12 col-lg-8 p-3">
+            <div class="main-slide col-12 col-lg-8 p-3">
                 <img src="img/slide/d.jpg" alt="slide image" class="main-img">
                 <img src="img/slide/e.jpg" alt="slide image" class="main-img">
                 <img src="img/slide/f.jpg" alt="slide image" class="main-img">
@@ -82,20 +82,75 @@
                
             </div>
 
-            <h3>Vous pourrez aussi aimer...</h3>
+            <div> 
+                <h3><a href="">Commentaires (0)</a></h3> <br>
+                <form>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="nom">
+                        <label for="floatingInput">Nom</label>
+                    </div>
 
-            <div class="row mt-4">
-                <a href="detailsarticle.php" class="m-1">
-                        <div class="card">
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="Email">
+                        <label for="floatingInput">Email</label>
+                    </div>
+
+                     <div class="form-floating mb-3">
+                        <input type="tel" class="form-control" id="floatingInput" placeholder="Telephone">
+                        <label for="floatingInput">Telephone</label>
+                    </div>
+                   <div class="form-floating">
+                        <textarea class="form-control" placeholder="Ajoutez un commentaire" id="floatingTextarea2" style="height: 100px"></textarea>
+                        <label for="floatingTextarea2">Ajoutez un commentaire...</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Commentez</button>
+                </form>
+            </div>
+
+            <h3 class="mt-4">Vous pourrez aussi aimer...</h3>
+
+            <div class="row mt-4 content-autres-articles m-0 overflow-scroll w-100">
+
+                <a href="detailsarticle.php" class=" autres-article ">
+                    <div class="card w-100 m-0">
                         <img src="img/photo1.jpg" class="card-img-top" alt="photo">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p class="card-text">s</p>
                             <h5 class="card-title">10.000 Fcfa</h5>
 
                         </div>
                     </div>
                 </a>
+
+
+                <a href="detailsarticle.php" class=" autres-article">
+                    <div class="card w-100 m-0">
+                        <img src="img/photo1.jpg" class="card-img-top" alt="photo">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">s</p>
+                            <h5 class="card-title">10.000 Fcfa</h5>
+
+                        </div>
+                    </div>
+                </a>
+
+
+                <a href="detailsarticle.php" class=" autres-article">
+                    <div class="card w-100 m-0">
+                        <img src="img/photo1.jpg" class="card-img-top" alt="photo">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">s</p>
+                            <h5 class="card-title">10.000 Fcfa</h5>
+
+                        </div>
+                    </div>
+                </a>
+
+
+                
             </div>
         </div>
     </div>
