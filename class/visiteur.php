@@ -7,7 +7,5 @@
 
         }
 
-        public function afficherPublication(){
-            
-        }
+       
     }

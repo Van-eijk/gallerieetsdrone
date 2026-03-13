@@ -1,3 +1,56 @@
+
+<?php
+   
+    include_once 'database/configdatabase.php' ;
+
+    require_once __DIR__.'/class/uploadclass.php' ;
+
+    $erreurConnexion;
+
+    if(isset($_POST['connexion'])){
+
+        if(!empty($_POST['emailCon'])){
+
+            if(!empty($_POST['motDePasseCon'])){
+                
+               $lienFichierBDD = "database/configdatabase.php";
+                $lienPageAccueil ='accueil-admin.php';
+                $conAdmin = new SousAdmin();
+
+
+
+
+                $conAdmin->setEmailAdmin($_POST['emailCon']);
+                $conAdmin->setMotDePasseAdmin($_POST['motDePasseCon']);
+                
+                $emailCon = $conAdmin->getEmailAdmin() ;
+                $motDePasseCon = $conAdmin->getMotDePasseAdmin() ;
+
+                //$conAdmin->connexionAdmin($emailCon, $motDePasseCon, $lienFichierBDD, $lienPageAccueil );
+
+                if($conAdmin->connexionAdmin($emailCon, $motDePasseCon, $lienFichierBDD, $lienPageAccueil) == false){
+                    $erreurConnexion = "Email ou mot de passe incorrect";
+
+                }
+
+
+            }else{
+                $erreurMotDePasse = "Entrez le mot de passe";
+            }
+        }
+        else{
+            $erreurPseudo = "Entrez l'email";
+        }       
+    }
+?>
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,18 +74,29 @@
 
         <div class="formulaire">
             <h2>ADMINISTRATEUR</h2> <br>
+            <?php
+                if(isset($erreurConnexion)){
+                    echo '<div class="alert alert-danger" role="alert">'.$erreurConnexion.'</div>';
+                }
+                if(isset($erreurMotDePasse)){
+                    echo '<div class="alert alert-danger" role="alert">'.$erreurMotDePasse.'</div>';
+                }
+                if(isset($erreurPseudo)){
+                    echo '<div class="alert alert-danger" role="alert">'.$erreurPseudo.'</div>';
+                }
+            ?>
 
             <form action="" method="post">
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control " id="floatingInput" placeholder="Pseudo">
-                    <label for="floatingInput">Pseudo</label>
+                    <input type="text" class="form-control " id="floatingInput" name="emailCon" placeholder="Email">
+                    <label for="floatingInput">Email</label>
                     </div>
                     <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <input type="password" class="form-control" id="floatingPassword" name="motDePasseCon" placeholder="Password">
                     <label for="floatingPassword">Password</label>
                 </div> <br>
                 <div class=" d-flex justify-content-center ">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" name="connexion" value="connexion">Connexion</button>
 
                 </div>
             </form>

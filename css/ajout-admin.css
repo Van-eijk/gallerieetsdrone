@@ -1,0 +1,45 @@
+h2{
+    margin-top: 86px;
+}
+
+.liste-admin{
+    margin-top: 25px;
+}
+
+
+
+.admin-item{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    justify-content: space-between;
+}
+.admin-item .info{
+    display: flex;
+    align-items: center;
+    /*border-bottom: 1px solid #ccc;*/
+}
+
+.info i{
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.plus-details i{
+    font-size: 24px;
+}
+
+.admin-info{
+    display: flex;
+    align-items: center;
+
+}
+.admin-info h5, .admin-info p{
+    margin: 0px 0px;
+    padding: 0px 0px;
+}
+.admin-info p{
+    font-size: 14px;
+    color: #888;
+    margin-left: 15px;
+}

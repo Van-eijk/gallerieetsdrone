@@ -2,12 +2,15 @@
     class Publication{
         private $idPublication ;
         private $idPublicationAdmin ;
+        private $categorie ;
         private $titre ;
         private $description ;
         private $prix ;
         private $auteur ;
         private $image ;
         private $dateHeure ;
+        private $nomModificateur ;
+        private $dateModification ;
 
         /**
          * Get the value of idPublication
@@ -168,4 +171,82 @@
 
                 return $this;
         }
+
+         /**
+         * Get the value of nomModificateur
+         */ 
+        public function getNomModificateur()
+        {
+                return $this->nomModificateur;
+        }
+
+        /**
+         * Set the value of dateHeure
+         *
+         * @return  self
+         */ 
+        public function setNomModificateur($nomModificateur)
+        {
+                $this->nomModificateur = $nomModificateur;
+
+                return $this;
+        }
+
+        /**
+
+         * Get the value of dateModification
+         */ 
+        public function getDateModification()
+        {
+                return $this->dateModification;
+        }
+
+        /**
+         * Set the value of dateHeure
+         *
+         * @return  self
+         */ 
+        public function setDateModification($dateModification)
+        {
+                $this->dateModification = $dateModification;
+
+                return $this;
+        }
+
+
+         /**
+         * Get the value of categorie
+         */ 
+        public function getCategorie()
+        {
+                return $this->categorie;
+        }
+
+        /**
+         * Set the value of categorie
+         *
+         * @return  self
+         */ 
+        public function setCategorie($categorie)
+        {
+                $this->categorie = $categorie;
+
+                return $this;
+        }
+
+        // Constructeur
+        public function __construct($idPublicationAdmin, $titre, $description, $prix, $auteur, $image, $nomModificateur, $dateModification, $categorie) {
+            $this->idPublicationAdmin = $idPublicationAdmin;
+            $this->titre = $titre;
+            $this->description = $description;
+            $this->prix = $prix;
+            $this->auteur = $auteur;
+            $this->image = $image;
+            $this->nomModificateur = $nomModificateur;
+            $this->dateModification = $dateModification;
+                $this->categorie = $categorie;
+
+        }
+
+       
     }

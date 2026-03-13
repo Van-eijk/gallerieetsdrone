@@ -147,4 +147,16 @@
 
                 return $this;
         }
+
+        // Constructeur
+        public function __construct($idCommantaire, $idCommantairePublication, $nomVisiteur, $emailVisiteur, $telVisiteur, $note, $dateHeure) {
+            $this->idCommantaire = $idCommantaire;
+            $this->idCommantairePublication = $idCommantairePublication;
+            $this->nomVisiteur = $nomVisiteur;
+            $this->emailVisiteur = $emailVisiteur;
+            $this->telVisiteur = $telVisiteur;
+            $this->note = $note;
+            $this->dateHeure = $dateHeure;
+
+        }
     }

@@ -1,6 +1,25 @@
+<?php
+
+    include 'database/configdatabase.php';
+
+    require_once __DIR__.'/class/uploadclass.php' ;
+    
+    $deconAdmin = new SousAdmin() ;
+    if(isset($_GET['action']) && $_GET['action'] == "deconnexion"){
+        $lienPageAccueil = "./loginadmin.php" ;
+        $deconAdmin->deconnexionAdmin($lienPageAccueil) ;
+    }
+   
+?>  
+
+
+
+
+
+
 <nav class="navbar navbar-expand-lg nav-responsive navbar-dark fixed-top bg-info w-100">
     <div class="container-fluid main-nav w-100">
-        <a href="index.php" class="navbar-brand text-uppercase fw-bold text-dark">
+        <a href="accueil-admin.php" class="navbar-brand text-uppercase fw-bold text-dark">
             
                 <img src="img/logo.jpeg" style="height: 60px; width: 200px; padding: 0px; margin: 0px;" alt="logo">
             
@@ -23,29 +42,24 @@
                 </form>
             </div>
             <ul class="navbar-nav ">
-                <li class="nav-item ps-3">
-                    <a href="serviceclient.php" class="nav-link text-dark active">Service client</a>
+                
+                 <li class="nav-item ps-3">
+                     <!-- Confert popupdeconnexion.php -->
+
+                    <a class="nav-link text-dark"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" style=" cursor: pointer;"><i class="bi bi-person-circle"></i></a>
                 </li>
 
                 <li class="nav-item ps-3">
-                    <a href="apropos.php" class="nav-link text-dark">A propos</a>
-                </li>
-
-                <li class="nav-item ps-3">
-                    <a href="listeclient.php" class="nav-link text-dark">Nos sponsors</a>
+                    <a href="#" class="nav-link text-dark"> <?php echo $nomAdmin ; ?> </a>
                 </li>
 
                 
 
                 <li class="nav-item ps-3">
-                    <a href="profilmembre.php" class="nav-link text-dark"> Nous contacter</a>
+                    <a href="?action=deconnexion" class="nav-link text-dark"> Deconnexion</a>
                 </li>
 
-                <li class="nav-item ps-3">
-                     <!-- Confert popupdeconnexion.php -->
-
-                    <a class="nav-link text-dark"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" style=" cursor: pointer;"><i class="bi bi-person-circle"></i></a>
-                </li>
+               
             </ul>
 
         </div>
