@@ -1,0 +1,17 @@
+{
+    "name": "user/etsdrone",
+    "autoload": {
+        "psr-4": {
+            "User\\Etsdrone\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "van",
+            "email": "siginingvan@yahoo.com"
+        }
+    ],
+    "require": {
+        "intervention/image": "^3.11"
+    }
+}

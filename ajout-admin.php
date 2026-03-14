@@ -1,43 +1,18 @@
 <?php
     session_start();
-    include 'database/configdatabase.php';
 ?>
 
 
 <?php
-    require_once __DIR__ . '/class/uploadclass.php';
-
-    $superAdmin = new SuperAdmin() ;
-
-    $r = $superAdmin->listerAdmin("database/configdatabase.php") ;
-
-    if($r != false){
-        foreach($r as $admin){
-            echo $admin['nomAdmin'] . " - " . $admin['typeAdmin'] . "<br>" ;
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     if(isset($_SESSION["idAdmin"]) && isset($_SESSION["emailAdmin"])){ 
+
+        include 'database/configdatabase.php';
+        require_once __DIR__ . '/class/uploadclass.php';
+        $superAdmin = new SuperAdmin() ;
+        $lienFichierBDD = "database/configdatabase.php" ;
+
+
         $idAdmin = $_SESSION["idAdmin"] ;
         $etatAdmin = $_SESSION["etatAdmin"] ;
 
@@ -132,24 +107,38 @@
 
                         <div class="row liste-admin">
                             <h2 style="margin-bottom: 25px;">Liste des administrateurs</h2>
+                            <?php
 
-                            <div class="admin-item">
-                                <div class="info">
-                                    <span>
-                                        <i class="bi bi-person-circle"></i>
-                                    
-                                    </span>
-                                    <div class="admin-info">
-                                        <h5>Nom de l'administrateur</h5> <p>|</p>
-                                        <p>Type d'administrateur</p>
-                                    </div>
-                                </div>
+                                $result = $superAdmin->listerAdmin($lienFichierBDD) ;
+                                if($result != false){
+                                    foreach($result as $admin){ ?>
+                                       
+                                  
+                            
 
-                                <div class="plus-details">
-                                    <a href="" title="Plus de détails"><i class="bi bi-info-circle-fill"></i></a>
-                                </div>
+                                        <div class=" admin-item">
+                                            <div class="info">
+                                                <span>
+                                                    <i class="bi bi-person-circle"></i>
+                                                
+                                                </span>
+                                                <div class="admin-info">
+                                                    <h5><?php echo $admin['nomAdmin']; ?></h5>
+                                                    <p><?php echo $admin['typeAdmin']; ?></p>
+                                                </div>
+                                            </div>
 
-                            </div>
+                                            <div class="plus-details">
+                                                <a href="" title="Plus de détails"><i class="bi bi-info-circle-fill"></i></a>
+                                            </div>
+
+                                        </div>
+                                    <?php  }
+                                }
+                                else{
+                                    echo '<p>Aucun administrateur enregistré pour le moment.</p>';
+                                }
+                            ?>
 
                         </div>
                     </div>

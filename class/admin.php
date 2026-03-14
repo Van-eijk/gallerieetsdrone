@@ -184,7 +184,7 @@
 
                 // Methodes abstraites qui seront implémentées dans les classes filles
 
-                abstract public function ajouterPublication(); // Car le super admin n'a pas le droit d'ajouter une publication, cette méthode sera implémentée uniquement dans la classe SousAdmin
+                abstract public function ajouterPublication($idAdmin,$categoriePublication, $titrePublication, $descriptionPublication, $imagePublication, $auteurPublication, $prixPublication); // Car le super admin n'a pas le droit d'ajouter une publication, cette méthode sera implémentée uniquement dans la classe SousAdmin
                 abstract public function modifierPublication($idPublication, $idAdmin, $etatAdmin); // Chaque admin ne peut modifier que ses publications mais le superadmin peut modifier toutes les publications, cette méthode sera implémentée dans les classes SousAdmin et Superadmin
                 abstract public function supprimerPublication($idPublication, $idAdmin, $etatAdmin); // chaque admin ne peut supprimer que ses publications mais le superadmin peut supprimer toutes les publications, cette méthode sera implémentée dans les classes SousAdmin et Superadmin
 

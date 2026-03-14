@@ -41,7 +41,7 @@
 
         // Methodes
 
-        public function ajouterPublication(){
+        public function ajouterPublication($idAdmin,$categoriePublication, $titrePublication, $descriptionPublication, $imagePublication, $auteurPublication, $prixPublication){
             echo "Le super admin ne peut pas ajouter une publication, cette action est réservée aux sous admins.";
 
         }
@@ -69,6 +69,22 @@
                     'motDePasseAdmin'=>$mdpHash,
                     'typeAdmin'=>$typeAdmin
                 )) ;
+
+                // Récupérer l'id de l'admin ajouté pour l'insérer dans la table correspondante (sousadmin ou superadmin)
+
+                if($typeAdmin == "sousadmin"){
+                    $idAdmin = $connexionDataBase->lastInsertId() ; // Récupérer l'id de l'admin ajouté
+                    $reqAjouterSousAdmin = $connexionDataBase->prepare("INSERT INTO sousadmin (idSousAdmin) VALUES (:idSousAdmin)") ;
+                    $reqAjouterSousAdmin->execute(array(
+                        'idSousAdmin'=>$idAdmin
+                    )) ;
+                }else{
+                    $idAdmin = $connexionDataBase->lastInsertId() ; // Récupérer l'id de l'admin ajouté
+                    $reqAjouterSuperAdmin = $connexionDataBase->prepare("INSERT INTO superadmin (idSuperAdmin) VALUES (:idSuperAdmin)") ;
+                    $reqAjouterSuperAdmin->execute(array(
+                        'idSuperAdmin'=>$idAdmin
+                    )) ;
+                }
 
                 header("Location:ajout-admin.php");
             }else{
