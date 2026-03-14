@@ -70,15 +70,15 @@
 
 
         <div class="categorie border mt-5 mb-5 d-flex justify-content-center">
-            <a href="listearticle.php" class="m-3 p-2">SCULPTURE</a>
-            <a href="listearticle.php" class="m-3 p-2">OBJETS ANCIENS</a>
-            <a href="listearticle.php" class="m-3 p-2">VETEMENTS - BIJOUX - DEDICACES</a>
-            <a href="listearticle.php" class="m-3 p-2">PHOTOGRAPHIES</a>
-            <a href="listearticle.php" class="m-3 p-2">DESTINATION TOURISTIQUES & ARTISTIQUES</a>
-            <a href="listearticle.php" class="m-3 p-2">LITTERATURE</a>
-            <a href="listearticle.php" class="m-3 p-2">PRODUITS</a>
-            <a href="listearticle.php" class="m-3 p-2">BLOG</a>
-            <a href="listearticle.php" class="m-3 p-2">BIENTURES</a>
+            <a href="listearticle.php?categorie=SCULPTURE" class="m-3 p-2">SCULPTURE</a>
+            <a href="listearticle.php?categorie=OBJETS ANCIENS" class="m-3 p-2">OBJETS ANCIENS</a>
+            <a href="listearticle.php?categorie=VETEMENTS - BIJOUX - DEDICACES" class="m-3 p-2">VETEMENTS - BIJOUX - DEDICACES</a>
+            <a href="listearticle.php?categorie=PHOTOGRAPHIES" class="m-3 p-2">PHOTOGRAPHIES</a>
+            <a href="listearticle.php?categorie=DESTINATION TOURISTIQUES & ARTISTIQUES" class="m-3 p-2">DESTINATION TOURISTIQUES & ARTISTIQUES</a>
+            <a href="listearticle.php?categorie=LITTERATURE" class="m-3 p-2">LITTERATURE</a>
+            <a href="listearticle.php?categorie=PRODUITS" class="m-3 p-2">PRODUITS</a>
+            <a href="listearticle.php?categorie=BLOG" class="m-3 p-2">BLOG</a>
+            <a href="listearticle.php?categorie=BIENTURES" class="m-3 p-2">BIENTURES</a>
 
 
         </div>

@@ -112,9 +112,7 @@
             $reqListerAdmins->execute() ;
 
             if($reqListerAdmins ->rowCount() >= 1){
-                /*while($resultatListerAdmins = $reqListerAdmins->fetch()){
-                    echo $resultatListerAdmins['nomAdmin'] . "<br>" ;
-                }*/
+               
                 $resultatListerAdmins = $reqListerAdmins->fetchAll(PDO::FETCH_ASSOC) ;
                 return $resultatListerAdmins ;
                 
