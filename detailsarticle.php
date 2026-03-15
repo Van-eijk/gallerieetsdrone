@@ -115,77 +115,53 @@
                     </div>
 
                     <div> 
-                        <h3><a href="">Commentaires (0)</a></h3> <br>
+                        <?php 
+                        $nombreCommentaires = $visiteur->nombreCommentaire($idArticle, $lienFichierBDD) ;
+                        ?>
+                        <h3><a href="">Commentaires (<?php echo $nombreCommentaires; ?>)</a></h3> <br>
 
                         <div class="mb-4 liste-commentaire">
 
-                            <div class="mb-3 item-commentaire">
-                                <div class="header-commentaire">
-                                    <span>
-                                        <i class="bi bi-person-circle"></i>
-                                    </span>
-                                    <div class="ms-2 info-commentaire">
-                                        <h5>Nom du commentateur     </h5>  
-                                        <p class="ms-3">  Date du commentaire</p>
+                        <?php 
+                            $afficherCommentaires = $visiteur->afficherCommentaireVisiteur($idArticle, $lienFichierBDD) ;
+                            if($afficherCommentaires != false){
+                                foreach($afficherCommentaires as $commentaire){ ?>
+
+                                    <div class="mb-3 item-commentaire">
+                                        <div class="header-commentaire">
+                                            <span>
+                                                <i class="bi bi-person-circle"></i>
+                                            </span>
+                                            <div class="ms-2 info-commentaire">
+                                                <h5> <?php echo $commentaire['nomVisiteur']; ?>     </h5>  
+                                                <p class="ms-3">  <?php echo $commentaire['dateHeure']; ?> </p>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="body-commentaire">
+                                            <p>
+                                                <?php echo $commentaire['note']; ?>                                             </p>
+
+                                        </div>
+
+
                                     </div>
 
-                                </div>
+                               <?php }
+                            }else{
+                                echo '<div class="alert alert-info" role="alert">Aucun commentaire pour le moment, soyez le premier à commenter ! </div>';
+                            }
 
-                                <div class="body-commentaire">
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, voluptate.
-                                    </p>
+                        ?>
 
-                                </div>
-
-
-                            </div>
+                            
 
 
-                            <div class=" mb-3 item-commentaire">
-                                <div class="header-commentaire">
-                                    <span>
-                                        <i class="bi bi-person-circle"></i>
-                                    </span>
-                                    <div class="ms-2 info-commentaire">
-                                        <h5>Nom du commentateur     </h5>  
-                                        <p class="ms-3">  Date du commentaire</p>
-                                    </div>
-
-                                </div>
-
-                                <div class="body-commentaire">
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, voluptate.
-                                    </p>
-
-                                </div>
+                           
 
 
-                            </div>
-
-
-                            <div class=" mb-3 item-commentaire">
-                                <div class="header-commentaire">
-                                    <span>
-                                        <i class="bi bi-person-circle"></i>
-                                    </span>
-                                    <div class="ms-2 info-commentaire">
-                                        <h5>Nom du commentateur     </h5>  
-                                        <p class="ms-3">  Date du commentaire</p>
-                                    </div>
-
-                                </div>
-
-                                <div class="body-commentaire">
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, voluptate.
-                                    </p>
-
-                                </div>
-
-
-                            </div>
+                          
 
                         </div>
 

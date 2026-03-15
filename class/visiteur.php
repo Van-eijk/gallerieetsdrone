@@ -7,6 +7,22 @@
 
         }
 
+        public function nombreCommentaire($idArticle, $lienFichierBDD){
+            include $lienFichierBDD ;
+            $reqNombreCommentaire = $connexionDataBase->prepare("SELECT COUNT(*) AS nombreCommentaire FROM commentaire WHERE idCommentairePublication = :idArticle") ;
+            $reqNombreCommentaire->execute(array('idArticle' => $idArticle)) ;
+
+            if($reqNombreCommentaire ->rowCount() == 1){
+               
+                $resultatNombreCommentaire = $reqNombreCommentaire->fetch(PDO::FETCH_ASSOC) ;
+                return $resultatNombreCommentaire['nombreCommentaire'] ;
+                
+            }
+            else{
+                return false ;
+            }
+        }
+
         public function afficherCommentaireVisiteur($idArticle, $lienFichierBDD){
             include $lienFichierBDD ;
             $reqAfficherCommentaireVisiteur = $connexionDataBase->prepare("SELECT * FROM commentaire WHERE idCommentairePublication = :idArticle") ;
