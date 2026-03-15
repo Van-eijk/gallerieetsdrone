@@ -26,9 +26,27 @@
 
         }
 
+        public function detailsArticle($idArticle, $lienFichierBDD){
+            include $lienFichierBDD ;
+            $reqDetailsArticle = $connexionDataBase->prepare("SELECT * FROM publication WHERE idPublication = :idArticle") ;
+            $reqDetailsArticle->execute(array('idArticle' => $idArticle)) ;
+
+            if($reqDetailsArticle ->rowCount() == 1){
+               
+                $resultatDetailsArticle = $reqDetailsArticle->fetch(PDO::FETCH_ASSOC) ;
+                return $resultatDetailsArticle ;
+                
+            }
+            else{
+                return false ;
+            }
+            
+
+        }
+
         // Fonction pour tronquer le texte de description dans la page listearticle.php
 
-        function tronquerText($texte, $longueur_max = 100, $suite = '...') {
+        public function tronquerText($texte, $longueur_max = 100, $suite = '...') {
             if (strlen($texte) <= $longueur_max) {
                 return $texte;
             }

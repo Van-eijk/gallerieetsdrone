@@ -33,19 +33,32 @@
         </head>
         <body>
             <div class="container-fluid bg-light h-100 w-100 p-3">
-                <?php include 'header.php'; ?>
+                <?php 
+                include 'header.php'; 
+
+               
+                ?>
                 <div class="slide row">
                     <div class="main-slide col-12 col-lg-8 p-3">
-                        <img src="img/slide/d.jpg" alt="slide image" class="main-img">
-                        <img src="img/slide/e.jpg" alt="slide image" class="main-img">
-                        <img src="img/slide/f.jpg" alt="slide image" class="main-img">
-                        <img src="img/slide/f.jpg" alt="slide image" class="main-img">
+                        <?php
+                            $resultatDetailsArticle = $visiteur->detailsArticle($idArticle, $lienFichierBDD) ;
+                            if($resultatDetailsArticle != false){
+                                $images = json_decode($resultatDetailsArticle['image'], true) ; // Désérialisation du champ image pour obtenir le tableau des chemins d’images
+                                $resultatDetailsArticle['image'] = $images[0] ; // On prend la première image pour l’afficher dans les détails de l’article
+
+                                $i=0 ;
+                                $j=0 ;
+
+                                for($i=0; $i<count($images); $i++){ ?>
+                                    <img src="<?php echo $images[$i]; ?>" alt="slide image" class="main-img">
 
 
-
-
-
-                                    
+                                <?php
+                                }
+                            
+                            }
+                        ?>
+                       
 
 
                         <div class="bouton-next-prev">
@@ -56,11 +69,15 @@
                     </div>
 
                     <div class="second-slide border col-12 col-lg-4 p-3 d-lg-flex flex-lg-wrap justify-content-evenly  overflow-scroll">
-                        <img src="img/slide/d.jpg" alt="slide image" class="second-img m-1 ">
-                        <img src="img/slide/e.jpg" alt="slide image" class="second-img m-1 ">
-                        <img src="img/slide/f.jpg" alt="slide image" class="second-img m-1  ">
-                        <img src="img/slide/f.jpg" alt="slide image" class="second-img m-1  ">
 
+                        <?php 
+                            for($j=0; $j<count($images); $j++){ ?>
+                                <img src="<?php echo $images[$j]; ?>" alt="slide image" class="second-img m-1 ">    
+                        
+                        
+                        <?php
+                            }
+                        ?>
 
 
                         
@@ -70,11 +87,11 @@
                 </div>
 
                 <div class="row">
-                    <h1>OS DE L'ELEPHANT</h1>
-                    <h2>AUTEUR : John Doe</h2>
+                    <h1><?php echo $resultatDetailsArticle['titre']; ?></h1> <p><?php echo $resultatDetailsArticle['dateHeure']; ?></p>
+                    <h2>AUTEUR : <?php echo $resultatDetailsArticle['auteur']; ?></h2>
                     <div class="row d-flex justify-content-between align-items-center h-25 col-12 col-lg-8 ">
                         <div class="row price w-50 w-lg-25 h-25 p-2 ">
-                            <h2 class=" mb-0">Prix: 100€</h2>
+                            <h2 class=" mb-0">Prix: <?php echo $resultatDetailsArticle['prix']; ?> Fcfa</h2>
                         </div>
 
                         <div class="row buy w-50 w-lg-25 h-25 text-center p-2">
@@ -92,8 +109,7 @@
                     <div class="info-article col-12 p-3 mt-5">
                         <h2>A propos de l'article</h2>
                         <p class="mt-3">
-                            Victus universis caro ferina est lactisque abundans copia qua sustentantur, et herbae multiplices et siquae alites capi per aucupium possint, et plerosque mos vidimus frumenti usum et vini penitus ignorantes.
-
+                            <?php echo $resultatDetailsArticle['description']; ?>
                         </p>
                     
                     </div>
