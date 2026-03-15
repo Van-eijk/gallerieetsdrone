@@ -116,26 +116,103 @@
 
                     <div> 
                         <h3><a href="">Commentaires (0)</a></h3> <br>
-                        <form>
+
+                        <div class="mb-4 liste-commentaire">
+
+                            <div class="mb-3 item-commentaire">
+                                <div class="header-commentaire">
+                                    <span>
+                                        <i class="bi bi-person-circle"></i>
+                                    </span>
+                                    <div class="ms-2 info-commentaire">
+                                        <h5>Nom du commentateur     </h5>  
+                                        <p class="ms-3">  Date du commentaire</p>
+                                    </div>
+
+                                </div>
+
+                                <div class="body-commentaire">
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, voluptate.
+                                    </p>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <div class=" mb-3 item-commentaire">
+                                <div class="header-commentaire">
+                                    <span>
+                                        <i class="bi bi-person-circle"></i>
+                                    </span>
+                                    <div class="ms-2 info-commentaire">
+                                        <h5>Nom du commentateur     </h5>  
+                                        <p class="ms-3">  Date du commentaire</p>
+                                    </div>
+
+                                </div>
+
+                                <div class="body-commentaire">
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, voluptate.
+                                    </p>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <div class=" mb-3 item-commentaire">
+                                <div class="header-commentaire">
+                                    <span>
+                                        <i class="bi bi-person-circle"></i>
+                                    </span>
+                                    <div class="ms-2 info-commentaire">
+                                        <h5>Nom du commentateur     </h5>  
+                                        <p class="ms-3">  Date du commentaire</p>
+                                    </div>
+
+                                </div>
+
+                                <div class="body-commentaire">
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, voluptate.
+                                    </p>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+                        <form action="detailsarticle-data.php" method="post">
+                            <input type="hidden" name="idArticle" value="<?php echo $idArticle; ?>">
+
+
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="nom">
+                                <input type="text" class="form-control" name="nomvisiteur" id="floatingInput" placeholder="nom">
                                 <label for="floatingInput">Nom</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput" placeholder="Email">
+                                <input type="email" class="form-control" name="emailvisiteur" id="floatingInput" placeholder="Email">
                                 <label for="floatingInput">Email</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="tel" class="form-control" id="floatingInput" placeholder="Telephone">
+                                <input type="tel" class="form-control" name="telvisiteur" id="floatingInput" placeholder="Telephone">
                                 <label for="floatingInput">Telephone</label>
                             </div>
                         <div class="form-floating">
-                                <textarea class="form-control" placeholder="Ajoutez un commentaire" id="floatingTextarea2" style="height: 100px"></textarea>
+                                <textarea class="form-control" name="commentairevisiteur" placeholder="Ajoutez un commentaire" id="floatingTextarea2" style="height: 100px"></textarea>
                                 <label for="floatingTextarea2">Ajoutez un commentaire...</label>
                             </div>
-                            <button type="submit" class="btn btn-primary mt-3">Commentez</button>
+                            <button type="submit" name="commenter" class="btn btn-primary mt-3">Commentez</button>
                         </form>
                     </div>
 

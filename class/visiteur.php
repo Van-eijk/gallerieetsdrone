@@ -7,6 +7,40 @@
 
         }
 
+        public function afficherCommentaireVisiteur($idArticle, $lienFichierBDD){
+            include $lienFichierBDD ;
+            $reqAfficherCommentaireVisiteur = $connexionDataBase->prepare("SELECT * FROM commentaire WHERE idCommentairePublication = :idArticle") ;
+            $reqAfficherCommentaireVisiteur->execute(array('idArticle' => $idArticle)) ;
+
+            if($reqAfficherCommentaireVisiteur ->rowCount() >= 1){
+               
+                $resultatAfficherCommentaireVisiteur = $reqAfficherCommentaireVisiteur->fetchAll(PDO::FETCH_ASSOC) ;
+                return $resultatAfficherCommentaireVisiteur ;
+                
+            }
+            else{
+                return false ;
+            }
+
+
+        }
+
+
+        public function commenterArticle($idPublication, $nomVisiteur, $emailVisiteur, $telVisiteur, $note){
+            include 'database/configdatabase.php' ;
+            $reqCommenterArticle = $connexionDataBase->prepare("INSERT INTO commentaire (idCommentairePublication, nomVisiteur, emailVisiteur,telVisiteur, note) VALUES (:idPublication, :nomVisiteur, :emailVisiteur, :telVisiteur, :note)") ;
+            $reqCommenterArticle->execute(array(
+                'idPublication'=>$idPublication,
+                'nomVisiteur'=>$nomVisiteur,
+                'emailVisiteur'=>$emailVisiteur,
+                'telVisiteur'=>$telVisiteur,
+                'note'=>$note
+            )) ;
+
+            return true ;
+
+        }
+
 
         public function listerArticle($lienFichierBDD, $categorieArticle){
             include $lienFichierBDD ;

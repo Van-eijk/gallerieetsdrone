@@ -179,3 +179,27 @@ span i{
     }
 
 }
+
+.header-commentaire{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /*border: 1px solid black;*/
+}
+.info-commentaire{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /*border: 1px solid red;*/
+
+}
+.liste-commentaire h5, .liste-commentaire p{
+    margin: 0px 0px;
+    padding: 0px 0px;
+}
+
+.body-commentaire {
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 0px 10px 10px 10px;
+}
