@@ -51,9 +51,7 @@
         public function supprimerPublication($idPublication, $idAdmin, $etatAdmin){
             
         }
-        public function supprimerCommentaire($idCommentaire, $idAdmin){
-            
-        }
+        
 
 
         public function ajouterAdmin($typeAdmin, $nomAdmin, $emailAdmin, $telAdmin, $mdpAdmin, $confirmerMdpAdmin){

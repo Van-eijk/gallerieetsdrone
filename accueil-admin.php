@@ -69,7 +69,7 @@
 
 
 
-                        <a href="listepublication.php" class="bg-info border">
+                        <a href="commentaire.php" class="bg-info border">
                             <div class="icon">
                                 <i class="bi bi-chat-left-text-fill"></i>
                             </div>

@@ -12,7 +12,7 @@
             $reqNombreCommentaire = $connexionDataBase->prepare("SELECT COUNT(*) AS nombreCommentaire FROM commentaire WHERE idCommentairePublication = :idArticle") ;
             $reqNombreCommentaire->execute(array('idArticle' => $idArticle)) ;
 
-            if($reqNombreCommentaire ->rowCount() == 1){
+            if($reqNombreCommentaire ->rowCount() >= 1){
                
                 $resultatNombreCommentaire = $reqNombreCommentaire->fetch(PDO::FETCH_ASSOC) ;
                 return $resultatNombreCommentaire['nombreCommentaire'] ;
@@ -25,7 +25,7 @@
 
         public function afficherCommentaireVisiteur($idArticle, $lienFichierBDD){
             include $lienFichierBDD ;
-            $reqAfficherCommentaireVisiteur = $connexionDataBase->prepare("SELECT * FROM commentaire WHERE idCommentairePublication = :idArticle") ;
+            $reqAfficherCommentaireVisiteur = $connexionDataBase->prepare("SELECT * FROM commentaire WHERE idCommentairePublication = :idArticle order by idCommentaire DESC") ;
             $reqAfficherCommentaireVisiteur->execute(array('idArticle' => $idArticle)) ;
 
             if($reqAfficherCommentaireVisiteur ->rowCount() >= 1){

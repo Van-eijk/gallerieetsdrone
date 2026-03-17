@@ -194,9 +194,54 @@
 
                 }
 
-                public function afficherCommentaire(){
+                public function nombreCommentaire($lienFichierBDD){
+                        include $lienFichierBDD ;
+                        $reqNombreCommentaire = $connexionDataBase->prepare("SELECT COUNT(*) AS nombreCommentaire FROM commentaire") ;
+                        $reqNombreCommentaire->execute() ;
+
+                        if($reqNombreCommentaire ->rowCount() >= 1){
+                        
+                                $resultatNombreCommentaire = $reqNombreCommentaire->fetch(PDO::FETCH_ASSOC) ;
+                                return $resultatNombreCommentaire['nombreCommentaire'] ;
+                                
+                        }
+                        else{
+                                return false ;
+                        }
+                }
+
+                public function afficherCommentaireAdmin($lienFichierBDD){
+                        include $lienFichierBDD ;
+                        $reqAfficherCommentaireAdmin = $connexionDataBase->prepare("SELECT * FROM commentaire order by idCommentaire DESC") ;
+                        $reqAfficherCommentaireAdmin->execute() ;    
+                        if($reqAfficherCommentaireAdmin ->rowCount() >= 1){
+                        
+                                $resultatAfficherCommentaireAdmin = $reqAfficherCommentaireAdmin->fetchAll(PDO::FETCH_ASSOC) ;
+                                return $resultatAfficherCommentaireAdmin ;
+                                
+                        }
+                        else{
+                                return false ;
+                        }
+
 
                 }
+
+                public function supprimerCommentaire($idCommentaire, $lienFichierBDD){
+                        include $lienFichierBDD ;
+                        $reqSupprimerCommentaire = $connexionDataBase->prepare("DELETE FROM commentaire WHERE idCommentaire = :idCommentaire") ;
+                        $reqSupprimerCommentaire->execute(array(
+                                'idCommentaire' => $idCommentaire
+                        )) ;
+                        
+                        return true ;
+                        
+
+                }
+
+                
+
+                
 
                 public function connexionAdmin($emailAdmin, $motDePasseAdmin, $lienFichierBDD, $lienPageAccueil){
                         //echo("bobo");
