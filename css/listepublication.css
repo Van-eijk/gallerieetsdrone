@@ -1,0 +1,16 @@
+h1{
+    text-align: center;
+    margin-top: 86px;
+}
+.pub-item{
+   
+    border: 2px solid black;
+    padding: 5px;
+}
+.action-pub{
+    margin-top: 10px   ;
+}
+
+.pub-item{
+    margin-bottom: 20px;
+}

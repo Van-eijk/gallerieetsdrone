@@ -52,7 +52,7 @@
                     <?php include 'header-admin.php' ;?>
 
                     
-                    <h1>liste des commentaires des visiteurs
+                    <h1 class = "text-center">Liste des commentaires des visiteurs
                         <?php
                         $nombreCommentaire = $superAdmin->nombreCommentaire($lienFichierBDD) ;
                         if($nombreCommentaire > 0){
@@ -112,7 +112,7 @@
                                 <?php
                             }
                         }else{
-                            echo '<div class="alert alert-info" role="alert">Aucun commentaire pour le moment.</div>';
+                            echo '<div class="alert alert-info text-center" role="alert">Aucun commentaire pour le moment.</div>';
                         }
                     ?>
                         

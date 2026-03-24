@@ -134,12 +134,10 @@
 
 
 
-        public function modifierPublication($idPublication, $idAdmin, $etatAdmin){
+        public function modifierPublication($lienFichierBDD, $idPublication, $categoriePublication, $titrePublication, $descriptionPublication, $prixPublication, $auteurPublication){
 
         }
-        public function supprimerPublication($idPublication, $idAdmin, $etatAdmin){
-            
-        }
+       
 
 
        

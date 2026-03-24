@@ -45,10 +45,158 @@
             echo "Le super admin ne peut pas ajouter une publication, cette action est réservée aux sous admins.";
 
         }
-        public function modifierPublication($idPublication, $idAdmin, $etatAdmin){
+
+
+        public function modifierPublication($lienFichierBDD, $idPublication, $categoriePublication, $titrePublication, $descriptionPublication, $prixPublication, $auteurPublication){
+            include $lienFichierBDD ;
+            // On recupère d'abord le nom de l'admin qui a publier la publication
+
+            $reqNomAdmin = $connexionDataBase->prepare("SELECT nomAdmin FROM admin INNER JOIN publication ON idAdmin = idPublicationAdmin WHERE idPublication = :idPub ");
+            $reqNomAdmin->execute(array(
+                'idPub' => $idPublication
+            ));
+            $resultReqNomAdmin = $reqNomAdmin->fetch();
+            $resultatListerAdmins = $resultReqNomAdmin['nomAdmin'];
+
+            $dateModification = date('Y-m-d H:i:s') ;
+
+            $reqModification = $connexionDataBase->prepare("UPDATE publication set categorie = :cat, titre = :titreM, description = :descrip, prix = :pri, auteur = :aut, nomModificateur = :nomM, dateModification = :dateM WHERE idPublication = :idPub");
+            $reqModification->execute(array(
+                'cat' => $categoriePublication,
+                'titreM' => $titrePublication,
+                'descrip' => $descriptionPublication,
+                'pri' => $prixPublication,
+                'aut' => $auteurPublication,
+                'nomM' => $resultatListerAdmins,
+                'dateM' => $dateModification,
+                'idPub' => $idPublication
+
+            )) ;
+
+            return true ;
+
+
 
         }
-        public function supprimerPublication($idPublication, $idAdmin, $etatAdmin){
+
+
+      /*  public function modifierPublication($connexionDataBase, $idPublication, $categoriePublication, $titrePublication, $descriptionPublication, $prixPublication, $auteurPublication){
+
+    // Récupération du nom de l'admin
+    $reqNomAdmin = $connexionDataBase->prepare("
+        SELECT admin.nomAdmin 
+        FROM admin 
+        INNER JOIN publication 
+        ON admin.idAdmin = publication.idPublicationAdmin 
+        WHERE publication.idPublication = :idPub
+    ");
+
+    $reqNomAdmin->execute([
+        'idPub' => $idPublication
+    ]);
+
+    $resultReqNomAdmin = $reqNomAdmin->fetch();
+
+    if(!$resultReqNomAdmin){
+        return false;
+    }
+
+    $nomAdmin = $resultReqNomAdmin['nomAdmin'];
+
+    // Date correcte pour MySQL
+    $dateModification = date('Y-m-d H:i:s');
+
+    // Requête UPDATE
+    $reqModification = $connexionDataBase->prepare("
+        UPDATE publication 
+        SET categorie = :cat, 
+            titre = :titreM, 
+            description = :descrip, 
+            prix = :pri, 
+            auteur = :aut, 
+            nomModificateur = :nomM, 
+            dateModification = :dateM 
+        WHERE idPublication = :idPub
+    ");
+
+    $reqModification->execute([
+        'cat' => $categoriePublication,
+        'titreM' => $titrePublication,
+        'descrip' => $descriptionPublication,
+        'pri' => $prixPublication,
+        'aut' => $auteurPublication,
+        'nomM' => $nomAdmin,
+        'dateM' => $dateModification,
+        'idPub' => $idPublication
+    ]);
+
+    return $reqModification->rowCount() > 0;
+}
+
+*/
+
+        public function detailAdmin($lienFichierBDD, $idAdmin){
+            include $lienFichierBDD ;
+
+            $reqDetailAdmin = $connexionDataBase->prepare('SELECT * FROM admin WHERE idAdmin = :id');
+            $reqDetailAdmin->execute(array(
+                'id' => $idAdmin
+            )) ;
+
+            if($reqDetailAdmin->rowCount() >= 1){
+                $resultReqDetailAdmin = $reqDetailAdmin ->fetch();
+                return $resultReqDetailAdmin ;
+            }
+            else{
+                return false ;
+            }
+
+            
+
+        }
+
+        public function bloquerAdmin($lienFichierBDD, $idAdmin){
+            include $lienFichierBDD;
+
+            $etat = "";
+
+            $reqEtatAdmin = $connexionDataBase->prepare('SELECT etatAdmin FROM admin WHERE idAdmin = :id');
+            $reqEtatAdmin->execute(array(
+                'id' => $idAdmin
+            ));
+
+
+            if($reqEtatAdmin -> rowCount() >= 1){
+                $resultatReqEtatAdmin = $reqEtatAdmin -> fetch();
+
+                $etatAdmin = $resultatReqEtatAdmin['etatAdmin'];
+
+                if($etatAdmin == "actif"){
+                    $etat = "bloque";
+                    $reqBloquerAdmin = $connexionDataBase->prepare('UPDATE admin SET etatAdmin = :bloquer WHERE idAdmin = :id');
+                    $reqBloquerAdmin->execute(array(
+                        'bloquer' => $etat,
+                        'id' => $idAdmin
+                    ));
+                }else{
+                    $etat = "actif" ;
+
+                    $reqActiverAdmin = $connexionDataBase->prepare('UPDATE admin SET etatAdmin = :activer WHERE idAdmin = :id');
+                    $reqActiverAdmin->execute(array(
+                        'activer' => $etat,
+                        'id' => $idAdmin
+                    ));
+                }
+
+                return true ;
+
+
+            }else{
+                return false ;
+            }
+
+            
+
             
         }
         
@@ -95,12 +243,8 @@
         public function modifierAdmin($idAdmin){
 
         }
-        public function bloquerAdmin($idAdmin){
-            
-        }
-        public function debloquerAdmin($idAdmin){
-            
-        }
+        
+       
 
 
 

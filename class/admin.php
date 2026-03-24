@@ -185,12 +185,132 @@
                 // Methodes abstraites qui seront implémentées dans les classes filles
 
                 abstract public function ajouterPublication($idAdmin,$categoriePublication, $titrePublication, $descriptionPublication, $imagePublication, $auteurPublication, $prixPublication); // Car le super admin n'a pas le droit d'ajouter une publication, cette méthode sera implémentée uniquement dans la classe SousAdmin
-                abstract public function modifierPublication($idPublication, $idAdmin, $etatAdmin); // Chaque admin ne peut modifier que ses publications mais le superadmin peut modifier toutes les publications, cette méthode sera implémentée dans les classes SousAdmin et Superadmin
-                abstract public function supprimerPublication($idPublication, $idAdmin, $etatAdmin); // chaque admin ne peut supprimer que ses publications mais le superadmin peut supprimer toutes les publications, cette méthode sera implémentée dans les classes SousAdmin et Superadmin
+                abstract public function modifierPublication($lienFichierBDD, $idPublication, $categoriePublication, $titrePublication, $descriptionPublication, $prixPublication, $auteurPublication); // Chaque admin ne peut modifier que ses publications mais le superadmin peut modifier toutes les publications, cette méthode sera implémentée dans les classes SousAdmin et Superadmin
 
                 // Methodes communes à tous les types d'admin
 
-                public function afficherPublication(){
+
+
+                public function supprimerPublication($lienFichierBDD, $idPublication, $idAdmin, $etatAdmin, $typeAdmin){
+                        // chaque admin ne peut supprimer que ses publications mais le superadmin peut supprimer toutes les publications
+
+                        include $lienFichierBDD ;
+
+                        $reqEtatAdmin = $connexionDataBase->prepare('SELECT typeAdmin, etatAdmin FROM admin WHERE idAdmin = :id');
+                        $reqEtatAdmin->execute(array(
+                                'id' => $idAdmin
+                        ));
+
+                       if($reqEtatAdmin ->rowCount() >= 1){
+
+                                $resultReqEtatAdmin = $reqEtatAdmin->fetch();
+
+                                if($resultReqEtatAdmin['etatAdmin'] == "actif"){
+                                        if($resultReqEtatAdmin['typeAdmin'] == "superAdmin"){
+                                                // Avant de supprimer une publication, on doit d'abord supprimer les commentaires associés à cette publication
+
+                                                $reqSupprimerCommentairePub = $connexionDataBase->prepare('DELETE FROM commentaire WHERE idCommentairePublication = :idCommentairePub') ;
+                                                $reqSupprimerCommentairePub->execute(array(
+                                                        'idCommentairePub' => $idPublication
+                                                ));
+
+
+                                                // Maitenant, on supprime la publication concernée
+                                                $reqSupprimerPub = $connexionDataBase->prepare('DELETE FROM publication WHERE idPublication = :idPub');
+                                                $reqSupprimerPub->execute(array(
+                                                        'idPub' => $idPublication
+                                                )) ;
+                                                return "OK" ;
+                                        
+                                        }
+                                        else{
+                                                $reqIdPublicationAdmin = $connexionDataBase->prepare('SELECT idPublicationAdmin FROM publication WHERE idPublication = :idPub');
+                                                $reqIdPublicationAdmin->execute(array(
+                                                        'idPub' => $idPublication
+                                                ));
+
+                                                if($reqIdPublicationAdmin ->rowCount() >= 1){
+
+                                                        $resultReqIdPublicationAdmin = $reqIdPublicationAdmin->fetch();
+
+                                                        if($resultReqIdPublicationAdmin['idPublicationAdmin'] == $idAdmin){
+
+                                                                // Avant de supprimer une publication, on doit d'abord supprimer les commentaires associés à cette publication
+
+                                                                $reqSupprimerCommentairePub = $connexionDataBase->prepare('DELETE FROM commentaire WHERE idCommentairePublication = :idCommentairePub') ;
+                                                                $reqSupprimerCommentairePub->execute(array(
+                                                                        'idCommentairePub' => $idPublication
+                                                                ));
+
+                                                                // Suppression de la publication
+
+                                                                $reqSupprimerPub = $connexionDataBase->prepare('DELETE FROM publication WHERE idPublication = :idPub');
+                                                                $reqSupprimerPub->execute(array(
+                                                                        'idPub' => $idPublication
+                                                                )) ;
+
+                                                                return "OK" ;
+
+                                                        }
+                                                        else{
+                                                                return "Vous n'etes pas autorisé à supprimer cette publication" ;
+
+
+                                                        }
+
+                                                }
+                                                else{
+                                                        return "Une erreur s'est produite de la selection de l'admin qui a fait la publication" ;
+                                                }
+                                        }
+
+                                }
+                                else{
+                                        return "Votre compte est bloqué" ;
+                                }
+
+
+                       }
+                       else{
+                                return "Une erreur s'est produite lors de la verification de l'etat de l'admin dans la BD" ;
+                       }
+                }
+
+               
+
+                public function afficherPublication($lienFichierBDD){
+                        include $lienFichierBDD ;
+                        $reqafficherPublication = $connexionDataBase->prepare("SELECT * FROM publication ORDER BY idPublication DESC") ;
+                        $reqafficherPublication->execute() ;
+
+                        if($reqafficherPublication ->rowCount() >= 1){
+                        
+                                $resultatAfficherPublication = $reqafficherPublication->fetchAll(PDO::FETCH_ASSOC) ;
+                                return $resultatAfficherPublication ;
+                                
+                        }
+                        else{
+                                return false ;
+                        }
+            
+
+                }
+
+                public function detailsPublication($lienFichierBDD, $idPublication){
+                        include $lienFichierBDD ;
+                        $reqDetailsPublication = $connexionDataBase->prepare("SELECT * FROM publication WHERE idPublication = :idPublication") ;
+                        $reqDetailsPublication->execute(array('idPublication' => $idPublication)) ;
+
+                        if($reqDetailsPublication ->rowCount() >= 1){
+                        
+                                $resultatDetailsPublication = $reqDetailsPublication->fetch() ;
+                                return $resultatDetailsPublication ;
+                                
+                        }
+                        else{
+                                return false ;
+                        }
+                
 
                 }
 

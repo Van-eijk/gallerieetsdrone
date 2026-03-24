@@ -49,6 +49,8 @@
                     <script src="https://kit.fontawesome.com/14273d579a.js" crossorigin="anonymous"></script>
                     <title>Ajouter un admin</title>
                     <link rel="stylesheet" href="css/ajout-admin.css">
+                    <link rel="stylesheet" href="css/header-admin.css">
+
 
                 </head>
                 <body>
@@ -129,7 +131,7 @@
                                             </div>
 
                                             <div class="plus-details">
-                                                <a href="" title="Plus de détails"><i class="bi bi-info-circle-fill"></i></a>
+                                                <a href="admin-details.php?id=<?php echo $admin['idAdmin']; ?>" title="Plus de détails"><i class="bi bi-info-circle-fill"></i></a>
                                             </div>
 
                                         </div>
