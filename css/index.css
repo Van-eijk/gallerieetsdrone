@@ -4,7 +4,7 @@ html{
 
 .slide-presentation{
     margin-top: 86px;
-    border: 10px solid red;
+    /*border: 10px solid red;*/
     width: 100%;
 }
 

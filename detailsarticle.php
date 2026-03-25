@@ -56,6 +56,9 @@
                                 <?php
                                 }
                             
+                            }else{
+                                header('Location:listearticle.php');
+                                exit();
                             }
                         ?>
                        
